@@ -85,20 +85,19 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'this is a test',
+    date: 'a long long time ago',
+    firstParagraph: `this is  paragraph with some randome stuff. i need all the random stuff to fill in this paragraph. there might be some typos, idk my bff jill? `,
+
+    secondParagraph: `dont call it a comeback, here's more random stuff, test one two three. lorum ipsom or something or other. yeeee yeyeeeyeyeyeyeyeyeyeye `,
+
+    thirdParagraph: `this is the hook, this is the hook, this is the hook, its catchy, you like it. this is the hook, this is the hook, this is the hook, it's catchy, you like it.`
   }
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
-  
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
-
-    {three separate paragraph elements}
-
-    <span class='expandButton'></span>
-  </div>
-
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
@@ -112,3 +111,39 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+function newThing(object){
+  const article = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const date = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+  
+  article.appendChild(h2);
+  article.appendChild(date);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(expandButton);
+  article.classList.add('article');
+  date.classList.add('date');
+  expandButton.classList.add('expandButton');
+  
+  h2.textContent = object.title;
+  date.textContent = object.date;
+  p1.textContent = object.firstParagraph;
+  p2.textContent = object.secondParagraph;
+  p3.textContent = object.thirdParagraph;
+  expandButton.textContent = 'click';
+  
+  expandButton.addEventListener('click', event =>{
+    article.classList.toggle('article-open');
+  })
+  return article;
+  }
+  const articles = document.querySelector('.articles');
+  data.map(object =>{
+    articles.appendChild(newThing(object))
+  })
+
